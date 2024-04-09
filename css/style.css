@@ -1,0 +1,752 @@
+@charset "UTF-8";
+
+/* 全デバイス共通 */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family:
+        "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+    color: #2c2c2c; 
+}
+
+li {
+    list-style: none;
+    font-family: 'Kiwi Maru', serif;
+}
+
+h2 {
+    font-family: 'Noto Serif JP', serif;
+}
+
+span {
+    color: #f7b34c;
+    font-family: 'Kalam', cursive;
+}
+
+p {
+    font-family: 'Kiwi Maru', serif;    
+}
+/* 全デバイス共通 */
+
+/*hover_サイト参照して作成*/
+ul a {
+    color: #2c2c2c;
+    font-weight: bold;
+    position: relative;
+}
+
+ul a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #fc9905;
+  bottom: -5px;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .4s ease-in-out;
+}
+
+ul a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+/*hover終わり*/
+
+h2 {
+    font-size: 32px;
+    padding-bottom: 45px;
+}
+
+span {
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+}
+
+.container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.container_header {
+    max-width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.header_left img {
+    width: 85px;
+}
+
+.header_nav {
+    display: flex;
+}
+
+.header_nav a {
+    font-size: 16px;
+    margin: 0 10px;
+    text-shadow: 0 0 10px #fff, 0 0 10px #fff,0 0 10px #fff, 
+    0 0 10px #fff;
+    /*text-shadowの値は左から「影の水平距離 、影の垂直距離、影のぼかし半径、影の色」*/
+}
+
+.header_right {
+    text-align: center;
+}
+
+.header_right img {
+    width: 50px;
+}
+
+.header_right_txt {
+    color: #2c2c2c;
+    font-weight: bold;
+    text-shadow: 0 0 10px #fff, 0 0 10px #fff,0 0 10px #fff, 
+    0 0 10px #fff;
+}
+
+/*hamburger-menu_サイト参照して作成*/
+.hamburger-menu {
+    display: none;
+}
+
+.menu-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    background-color: rgb(42, 54, 29);
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    position: absolute;
+}
+.menu-btn span:before {
+    bottom: 8px;
+}
+.menu-btn span:after {
+    top: 8px;
+}
+
+#menu-btn-check:checked ~ .menu-btn span {
+    background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
+}
+#menu-btn-check:checked ~ .menu-btn span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+}
+#menu-btn-check:checked ~ .menu-btn span::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+#menu-btn-check {
+    display: none;
+}
+
+.menu-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 80;    
+    background-color: #2a361d;
+}
+.menu-content ul {
+    padding: 70px 10px 0;
+}
+.menu-content ul li {
+    border-bottom: solid 1px #ffffff;
+    list-style: none;
+}
+.menu-content ul li a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    box-sizing: border-box;
+    color:#ffffff;
+    text-decoration: none;
+    padding: 9px 15px 10px 0;
+    position: relative;
+}
+
+.menu-content ul li a::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 11px;
+    top: 16px;
+}
+
+.menu-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;/*leftの値を変更してメニューを画面外へ*/
+    z-index: 80;
+    background-color: #2a361d;
+    transition: all 0.5s;/*アニメーション設定*/
+}
+
+#menu-btn-check:checked ~ .menu-content {
+    left: 0;/*メニューを画面内へ*/
+}
+/*hamburger-menu終わり*/
+
+/*トップ戻るボタン_サイト参照して作成*/
+.top_nav {
+    color: #333;
+    position: fixed;
+    bottom: 11%;
+    right: 10%;
+    z-index: 20;
+    text-decoration: none;
+    display: block;
+    width: 100px;
+    padding: 16px 20px;
+    text-align: right;
+    transform: rotate(90deg);
+    transform-origin: bottom right;
+  }
+  
+  .arrow1 {
+  width: 48px;
+  height: 1px;
+  background: #333;
+  position: absolute;
+  top: 50%;
+  right: 62px;
+  }
+  
+  .arrow2 {
+  width: 1px;
+  height: 12px;
+  background: #333;
+  position: absolute;
+  top: calc(50% + 1px);
+  right: 109px;
+  transform: rotate(-130deg);
+  transform-origin: top left;
+  }
+/*トップ戻るボタン終わり*/
+
+.main_message {
+    width: 100%;
+    background-image: url(../images/main_background.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-family: 'Kiwi Maru', serif;
+    font-size: 24px;
+    text-shadow: 5px 5px 10px #8c8c8c;
+    line-height: 1.8;
+    color: #2c2c2c;
+    position: absolute;
+    top: 43%;
+    left: 15%;
+}
+
+/*aboutus*/
+.article_aboutus {
+    width: 100%;
+    background-color: #f9efd3;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.container_aboutus_frame {
+    padding-bottom: 50px;
+}
+
+.aboutus {
+    width: 100%;
+    display: flex;
+}
+
+:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
+
+.aboutus_txt, .aboutus_img {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutus_txt p {
+    line-height: 2;
+}
+
+.aboutus_img img {
+    width: 100%;
+}
+
+/*button_サイトを参照して作成*/
+button {
+    width: 200px;
+    height: 50px;
+    border-radius: 30em;
+    font-size: 20px;
+    font-family: inherit;
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+               -6px -6px 12px #ffffff;
+    background-color: #006837;
+  }
+  
+  button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #006837;
+    box-shadow: 4px 5px 17px -4px #d1df57;
+  }
+  
+  button::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #d1df57;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+  }
+  
+  button:hover::before {
+    width: 250%;
+  }
+/*button終わり*/
+/*aboutus終わり*/
+
+/*products*/
+.article_products {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.products_txt p {
+    line-height: 2;
+}
+
+.products_menu_flex {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.products_menu {
+    width: 33%;
+    padding: 0 10px;
+}
+
+.products_menu img {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.products_menu p {
+    font-family: 'Kiwi Maru', serif;
+    line-height: 1.5;
+}
+/*products終わり*/
+
+/*experience*/
+.article_experience {
+    width: 100%;
+    background-image: url(../images/ex_background.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px 0;
+}
+
+.container_experience {
+    padding: 0 1%;
+}
+
+.experience_txt {
+    margin-bottom: 40px;
+}
+
+.experience_txt p {
+    padding-bottom: 20px;
+    line-height: 2;
+}
+/*experience終わり*/
+
+/*access*/
+.article_access {
+    width: 100%;
+    padding: 100px 0;
+}
+
+.container_access {
+    display: flex;
+}
+
+.access_map {
+    width: 60%;
+    position: relative;
+    padding-top: 40%;
+  }
+   
+.access_map iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+  }
+
+.access_txt {
+    width: 30%;
+    text-align: left;
+}
+
+.access_txt p {
+    padding-bottom: 20px;
+    line-height: 2;
+}
+/*access終わり*/
+
+/*footer*/
+footer {
+    width: 100%;
+    background-color: #f7b34c;
+    padding: 2% 0;
+}
+
+.container_footer {
+    display: flex;
+}
+
+.footer_left {
+    width: 30%;
+    text-align: center;
+}
+
+.footer_left_logo img {
+    width: 75px;
+}
+
+.footer_left_copy {
+    padding-top: 2%;
+}
+
+.footer_right {
+    width: 70%;
+    padding-right: 10%;
+}
+
+.footer_right_nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 20px 0;
+}
+
+.footer_right_nav ul li {
+    padding-left: 15px;
+}
+
+.footer_right_nav ul a {
+    font-weight: lighter;
+}
+
+.footer_right div {
+    text-align: right;
+}
+
+.footer_right_follow {
+    width: 98px;
+}
+
+.footer_right_sns {
+    width: 40px;
+}
+
+.footer_copy_rwd {
+    display: none;
+}
+/*footer終わり*/
+
+
+
+/*タブレット用レイアウト記述*/
+@media screen and (max-width: 1024px) { 
+
+    h1 {
+        font-size: 24px;  
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    
+    span {
+        font-size: 24px;
+    }
+    
+    p {
+        font-size: 16px;
+        line-height: 2;
+    }
+
+    button {
+        width: 50%;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .header_nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header_nav li {
+        padding-bottom: 5px;
+    }
+
+    .container_aboutus_frame {
+        padding-bottom: 0;
+    }
+
+    .aboutus {
+        flex-direction: column;
+    }
+    
+    .aboutus_txt, .aboutus_img {
+      width: 85%;
+      margin: auto;
+    }
+
+    .aboutus_txt {
+      padding: 25px;
+    }
+
+    .article_products {
+        padding: 10% 0;
+    }
+
+    .products_menu {
+        width: 50%;
+        padding-bottom: 20px;
+        margin: 0 auto;
+    }
+
+    .products_menu p {
+        font-size: 14px;
+    }
+
+    .article_experience {
+        padding: 10%;
+    }
+
+    .container_access {
+        flex-direction: column;
+        padding: 0 10%;
+    }
+
+    .access_map {
+        position: relative;
+        width: 100%;
+        padding-bottom: 20px;
+        margin: auto;
+        order: 2;
+      }
+       
+    .access_map iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120%;
+      }
+    
+    .access_txt {
+        width: 100%;
+        order: 1;
+        padding: 0 0 5% 0;
+    }
+
+    footer {
+        padding: 7%;
+    }
+
+    .container_footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer_left_logo img {
+        width: 80px;
+    }
+
+    .footer_left_copy {
+        display: none;
+    }
+
+    .footer_right {
+        padding: 0;
+        text-align: center;
+    }
+
+    .footer_right_nav ul {
+        flex-direction: column;
+   }
+
+    .footer_right_nav ul li {
+        padding: 0 0 10px;
+    }
+
+    .footer_right div {
+        text-align: center;
+    }
+
+    .footer_right_link {
+        padding-right: 0;
+    }
+
+    .footer_copy_rwd {
+        display: block;
+        padding-top: 20px;
+    }
+}
+
+
+/*スマートフォン用レイアウト記述*/
+@media screen and (max-width: 599px) {
+    h1 {
+        font-size: 20px;
+        position: absolute;
+        top: 80%;
+        left: 10%;
+    }
+    
+    h2 {
+        font-size: 20px;
+        line-height: 1.5;
+        padding-bottom: 20px;
+    }
+    
+    span {
+        font-size: 16px;
+    }
+    
+    p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    button {
+        width: 80%;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .header_left img {
+        width: 70px;
+    }
+
+    .header_right {
+        display: none;
+    }
+
+    .header_nav {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .article_txt_p {
+        padding-bottom: 0;
+    }
+
+    .article_products {
+        padding: 10%;
+    }
+
+    .products_txt {
+        text-align: left;
+    }
+    
+    .products_menu_flex {
+        display: block;
+        padding: 30px 0 20px;
+    }
+
+    .products_menu {
+        width: 100%;
+        padding: 0 0 20px;
+    }
+
+    .products_menu p {
+        font-size: 12px;
+    }
+
+    footer {
+        padding: 10% 10%;
+    }   
+}
